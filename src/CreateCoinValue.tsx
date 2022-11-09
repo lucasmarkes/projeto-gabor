@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase"
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import {
 	Container,
 	AddRemoveCoinsButtonsContainer,
@@ -17,12 +17,9 @@ function CreateCoinValue() {
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
 		try {
-			const docRef = await setDoc(doc(db, 'coins', 'one'), {
+			const docRef = await addDoc(collection(db, "coins"), {
 				coin: coin,
-				 name: "Los Angeles",
-				state: "CA",
-				country: "USA"
-			})
+			});
 			console.log("ADEED: ", docRef)
 		} catch (error) {
 			console.error("ERROR: ", error)

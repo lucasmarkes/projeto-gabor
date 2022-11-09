@@ -12,10 +12,10 @@ export const Container = styled(Box)({
 
 export const AddRemoveCoinsButtonsContainer = styled(Box)({
   display: "flex",
-  flexDirection: "column",
+  flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
-  height: "100vh",
+
 });
 
 export const SubmitInfoContainer = styled(Box)({
