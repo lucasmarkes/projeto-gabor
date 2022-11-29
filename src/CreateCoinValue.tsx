@@ -1,69 +1,41 @@
 import React, { useState } from "react"
-import { addDoc, collection, doc, getDocs } from "firebase/firestore";
-import { db } from "./firebase"
-import { Button } from "@mui/material";
-import {
-	Container,
-	AddRemoveCoinsButtonsContainer,
-	SubmitInfoContainer,
-	CoinsText,
-	PageTitle
-} from './styled';
-
 
 function CreateCoinValue() {
-	const [coin, setCoin] = useState(0);
-	
-	const handleSubmit = async (e: any) => {
+
+    const [details, setDetails] = useState({fName: ''})
+
+    const PostData =async(e: any)=>{
+        e.preventDefault()
+
+    	const{fName}=details;
+
+       const res = await fetch("https://fir-se-22-2-default-rtdb.firebaseio.com/test/coins.json",
+       {
+           method:'POST',
+           headers:{
+               'Content-Type':'text/plain'
+           },
+           body:JSON.stringify({
+            fName, 
+           })
+        })
+		console.log(res)
+    }
+
+	const GetData = async(e: any)=>{
 		e.preventDefault()
-		try {
-			const docRef = await addDoc(collection(db, "coins"), {
-				coin: coin,
-			});
-			console.log("ADEED: ", docRef)
-		} catch (error) {
-			console.error("ERROR: ", error)
-		}
+		const res = await fetch("https://fir-se-22-2-default-rtdb.firebaseio.com/test.json")
+		const data = await res.json()
+		console.log(data)
 	}
 
-	const addCoins = (e: any) => {
-		e.preventDefault()
-		setCoin(coin + 10)
-	}
-
-	const removeCoins = (e: any) => {
-		e.preventDefault()
-		setCoin(coin - 10)
-
-		if (coin <= 0) {
-			setCoin(0)
-		}
-	}
-	
-	return (
-		<>
-			<Container>
-				<PageTitle variant="h4">
-					Adicione créditos para o motorista!
-				</PageTitle>
-				<AddRemoveCoinsButtonsContainer>
-					<Button variant="contained" onClick={addCoins} size='small'
-						sx={{ textTransform: 'none' }}>+10</Button>
-					<CoinsText variant="h4">
-						{coin}
-					</CoinsText>
-					<Button variant="contained" onClick={removeCoins} size='small'
-						sx={{ textTransform: 'none', marginLeft: '1rem' }}>-10</Button>
-				</AddRemoveCoinsButtonsContainer>
-				<SubmitInfoContainer>
-					<Button variant="contained" onClick={handleSubmit} size='small'
-					sx={{  textTransform: 'none' }}>
-					Submit
-					</Button>
-				</SubmitInfoContainer>
-			</Container>
-		</>
-	)
+  	return (
+    <div className='form' >
+        <input type='text' placeholder='Enter coins value' onChange={(e)=> setDetails({...details,fName:e.target.value})} />
+        <button onClick={PostData}>Submit</button>
+		<button onClick={GetData}>Get Data</button>
+    </div>
+  )
 }
 
 export default CreateCoinValue

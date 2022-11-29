@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import CreateCoinValue from './CreateCoinValue';
+import UpdateCoins from './pages/embedded/UpdateCoins';
 
 function App() {
   return (
     <div className="App">
-      <CreateCoinValue/>
+      <UpdateCoins />
     </div>
   );
 }
