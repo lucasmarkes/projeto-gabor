@@ -6,7 +6,7 @@ import SavingsIcon from '@mui/icons-material/Savings';
 
 function UpdateCoins() {
     const [coins, setCoins] = useState(0)
-    const [ vagas, setVagas ] = useState(0)
+    const [vagas, setVagas] = useState(0)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -52,10 +52,11 @@ function UpdateCoins() {
                 <Typography sx={{color: "black", marginBottom: "1rem", fontSize:"27px"}}>Insira créditos para estacionar! 💲💲</Typography>
                 <Box sx={{display: "flex", justifyContent: "center"}}>
                     <input className="form-control" type="number" min="1" value={coins} onChange={e => setCoins(Number(e.target.value))} />
-                    <Button variant="contained" color="success" onClick={updateCoins} size="small" sx={{marginLeft: "1rem"}}>
+                    <Button variant="contained" color="success" onClick={updateCoins} size="medium" sx={{marginLeft: "1rem"}}>
                         <SavingsIcon/>
                     </Button>
                 </Box>
+                {/* <Typography sx={{color: "black", marginTop:"2rem", fontSize:"20px"}}>Dinheiro disponível: R$ {coins}</Typography> */}
                 <Typography sx={{color: "black", marginTop:"2rem", fontSize:"27px"}}>{vagas === 1 ? `🟢${vagas} Vaga disponível` : `🔴${vagas} Vagas disponíveis` } </Typography>
             </Box>
         )}
