@@ -56,8 +56,8 @@ function UpdateCoins() {
                         <SavingsIcon/>
                     </Button>
                 </Box>
-                {/* <Typography sx={{color: "black", marginTop:"2rem", fontSize:"20px"}}>Dinheiro disponível: R$ {coins}</Typography> */}
-                <Typography sx={{color: "black", marginTop:"2rem", fontSize:"27px"}}>{vagas === 1 ? `🟢${vagas} Vaga disponível` : `🔴${vagas} Vagas disponíveis` } </Typography>
+                {/* <Typography sx={{color: "black", marginTop:"2rem", fontSize:"20px"}}>Dinheiro disponível: <strong>R$ {coins}</strong></Typography> */}
+                <Typography sx={{color: "black", marginTop:"2rem", fontSize:"27px"}}>{vagas === 1 ? "🔴 0 Vagas disponíveis" : "🟢1 Vaga disponível" } </Typography>
             </Box>
         )}
     </>
